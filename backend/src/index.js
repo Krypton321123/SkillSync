@@ -3,7 +3,7 @@ import { connectDB } from "./db/connect.mongodb.js";
 import { app } from "./app.js";
 // import { connect } from "mongoose";
 
-dotenv.config();
+dotenv.config(); // inits env file 
 
 const start = async () => {
     try{
