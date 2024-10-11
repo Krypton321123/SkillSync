@@ -31,7 +31,7 @@ const userSchema = Schema({
 
 // hash passwords at login and signup instead of now. 
 
-userSchema.methods.generateAccessToken =  () => {
+userSchema.methods.generateAccessToken =  function() {
     return jwt.sign({
         _id: this._id, 
         email_id: this.email_id,
@@ -40,7 +40,7 @@ userSchema.methods.generateAccessToken =  () => {
     })
 }
 
-userSchema.methods.generateRefreshToken = () => {
+userSchema.methods.generateRefreshToken = function () {
     return jwt.sign({
         _id: this._id,
     }, process.env.REFRESH_TOKEN_SECRET, 
