@@ -1,3 +1,8 @@
+# IMPORTANT FOR TOMORROW ITS RAJ AT 2:47AM RN : 
+    Mukti Kindly introduce state into the sign up page and login page, I've already made the logic for both of them and made all the important schemas. When I wake up tomorrow we'll make a fully fledged dashboard, the ability to login/signup and of course the ability to create community and community posts and also, maybe work on a comment box.
+
+    IMPORTANT --> MAKE AT LEAST COMMUNITY AND POSTS WORKABLE
+
 # Description 
 
 This is a project where users can create communities based on their skills and they can conenct with each other on this basis
