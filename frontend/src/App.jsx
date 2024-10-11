@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import SignUp from './components/SignUp.jsx'
 
 
 function App() {
 
   return (
     <>
-      The basic stuff.
+      <SignUp />
     </>
   )
 }
