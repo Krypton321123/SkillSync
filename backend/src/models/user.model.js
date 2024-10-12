@@ -1,7 +1,7 @@
-import {Schema, Model} from "mongoose";
+import mongoose from "mongoose";
 import jwt from 'jsonwebtoken'; 
 
-const userSchema = Schema({
+const userSchema = mongoose.Schema({
     first_name: {
         type: String, 
         minLength: 3, 
@@ -22,7 +22,7 @@ const userSchema = Schema({
         required: true
     }, 
     refreshToken: {
-        type: string, 
+        type: String, 
         required: true,
     }   // will keep adding more to this for now this is enough 
 }, {timestamps: true}); 
@@ -48,6 +48,6 @@ userSchema.methods.generateRefreshToken = function () {
 }
 
 
-const User = Model('users', userSchema); 
+const User = mongoose.model('users', userSchema); 
 
 export { User };

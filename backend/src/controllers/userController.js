@@ -1,8 +1,8 @@
-import { User } from "../models/user.model";
-import { ApiError } from "../utils/ApiError";
-import { ApiResponse } from "../utils/ApiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
-import { isEmpty } from "../utils/isEmptyFields";
+import { User } from "../models/user.model.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { isEmpty } from "../utils/isEmptyFields.js";
 import * as bcrypt from 'bcrypt'; 
 
 
@@ -21,7 +21,7 @@ const generateRefreshAndAccessToken = (user) => {
     }
 }
 
-export const signUpController = asyncHandler(async (req, res) => {
+const signUpController = asyncHandler(async (req, res) => {
     try{
         const { firstName, lastName, password, confirmPassword } = req.body; 
         let { emailId } = req.body; 
@@ -85,7 +85,7 @@ export const signUpController = asyncHandler(async (req, res) => {
     
 }); 
 
-export const loginController = asyncHandler(async (req, res) => {
+const loginController = asyncHandler(async (req, res) => {
     try {
         let { emailId } = req.body; 
 
@@ -121,3 +121,5 @@ export const loginController = asyncHandler(async (req, res) => {
     }
 })
 
+
+export { signUpController, loginController }; 
