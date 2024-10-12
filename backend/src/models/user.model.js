@@ -1,7 +1,7 @@
-import {Schema, Model} from "mongoose";
+import mongoose from "mongoose";
 import jwt from 'jsonwebtoken'; 
 
-const userSchema = Schema({
+const userSchema = mongoose.Schema({
     first_name: {
         type: String, 
         minLength: 3, 
@@ -19,19 +19,17 @@ const userSchema = Schema({
     }, 
     password: {
         type: String, 
-        minLength: 8, 
-        maxLength: 30, 
         required: true
     }, 
     refreshToken: {
-        type: string, 
+        type: String, 
         required: true,
     }   // will keep adding more to this for now this is enough 
 }, {timestamps: true}); 
 
 // hash passwords at login and signup instead of now. 
 
-userSchema.methods.generateAccessToken =  () => {
+userSchema.methods.generateAccessToken =  function() {
     return jwt.sign({
         _id: this._id, 
         email_id: this.email_id,
@@ -40,7 +38,7 @@ userSchema.methods.generateAccessToken =  () => {
     })
 }
 
-userSchema.methods.generateRefreshToken = () => {
+userSchema.methods.generateRefreshToken = function () {
     return jwt.sign({
         _id: this._id,
     }, process.env.REFRESH_TOKEN_SECRET, 
@@ -50,6 +48,6 @@ userSchema.methods.generateRefreshToken = () => {
 }
 
 
-const User = Model('users', userSchema); 
+const User = mongoose.model('users', userSchema); 
 
 export { User };

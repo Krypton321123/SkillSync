@@ -3,6 +3,7 @@
 This is a project where users can create communities based on their skills and they can conenct with each other on this basis
 
 v1 - We will do this We know -> Basic functionality v2 - will have to research --> Advanced functionality semi v2 - we'll try --> Don't know whether can do 
+
 # Todos 
 Tech stack 
 db 
@@ -44,3 +45,14 @@ overall architecture
   # Checkpoints 
 
   - 16/10/2024 --> user authentication, dashboard, ability to create community, join or leave community, create a post full fledged, abilty to comment. Aspiring -> rules for communities 
+
+  # Urgent Tasks 
+
+  - Set Up cloudinary -- Most urgent rn 
+  - Need to make a logout route -- Mukti  
+  - Hook signup page with backend using axios 
+  - Study the architecture a bit 
+
+  - Community controllers - createCommunityController, searchCommunityController, Join A community, leave a community
+  - Community Post Created Controller - Create post controller, upvote logic and downvote logic (frontend --> value), remove a upvote and downvote --> a user can both upvote and downvote the same post or downvote should be removed if he upvotes and vice versa --> put this on priority to study 
+  - rate limiting, 
