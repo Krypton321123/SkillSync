@@ -44,3 +44,42 @@ const createCommunityController = asyncHandler(async (req, res) => {
         return res.status(500).json(new ApiError(500, "Internal Server Error")); 
     }
 })
+
+const joinCommunity = asyncHandler(async (req, res) => {
+    const user = req.user; 
+
+    try {
+        const { communityID } = req.params; 
+
+        if (!mongoose.Types.ObjectId.isValid(communityID)) {
+            return res.status(400).json(new ApiError(400, "Invalid Community ID"));
+        }
+
+        const userAlreadyJoined = await Community.findOne({
+            _id: communityID, 
+            members: { $in: [user._id]} 
+        })
+
+        if(userAlreadyJoined) {
+            return res.status(409).json(new ApiError(409, "User is already joined")); 
+        }
+
+        const updatedCommunity = await Community.findOneAndUpdate(
+            {_id: communityID}, 
+            {$addToSet: {members: user._id}}, 
+            {new: true}
+        ); 
+
+        if(!updatedCommunity) {
+            return res.status(400).json(new ApiError(400, "Community not updated"))
+        }
+
+        const dataToSend = {
+            updatedCommunity
+        }
+
+        return res.status(200).json(new ApiResponse(200, dataToSend, "User joined Successfully"))
+    } catch(err) {
+        return res.status(500).json(new ApiError(500, "Internal Server Error"))
+    }
+})
