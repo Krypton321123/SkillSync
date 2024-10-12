@@ -25,14 +25,27 @@ const communityPostSchema = mongoose.Schema({
         min: 10, 
         max: 120, 
     }, 
-    upvotes: {
-        type: Number, 
-        default: 0
-    }, 
-    downvotes: {
-        type: Number, 
-        default: 0
+    votes: {
+        type: mongoose.Types.Schema.ObjectId, 
+        ref: 'voteModel'
     }
 })
 
-export const communityPost = mongoose.Model('CommunityPost', communityPostSchema);  
+const voteSchema = mongoose.Schema({
+    postID: {
+        type: mongoose.Types.Schema.ObjectId, 
+        ref: 'CommunityPost'
+    }, 
+    likedUsers: {
+        type: [mongoose.Types.Schema.ObjectId], // tells mongoose to look in the users table for the object id array
+        ref: 'users'
+    }, 
+    dislikedUsers: {
+        type: [mongoose.Types.Schema.ObjectId], 
+        ref: 'users'
+    }
+})
+
+
+export const voteModel = mongoose.model('voteModel', voteSchema) 
+export const communityPost = mongoose.model('CommunityPost', communityPostSchema);  
