@@ -15,6 +15,7 @@ const communitySchema = mongoose.Schema({
         type: String, 
         min: 5, 
         max: 30,
+        unique: true 
     }, 
     members: {
         type: [mongoose.Schema.Types.ObjectId], 

@@ -113,7 +113,7 @@ const loginController = asyncHandler(async (req, res) => {
 
 
         return res.status(200).cookie('accessToken', accessToken, {httpOnly: true}).cookie('refreshToken', refreshToken, {httpOnly: true})
-        .json(new ApiResponse(200, {firstName: user.first_name, last_name: user.last_name, accessToken: accessToken, refreshToken: user.refreshToken}, "Login Successful"));
+        .json(new ApiResponse(200, {firstName: user.first_name, last_name: user.last_name, accessToken: accessToken}, "Login Successful"));
 
     } catch(err) {
         console.log(err)
