@@ -43,7 +43,7 @@ export default isAuthenticated = asyncHandler(async (req, res, next) => {
                 const newAccessToken = jwt.sign({ _id: user._id, email_id: user.email_id}, process.env.ACCESS_TOKEN_SECRET); 
 
                 const options  = {
-                    httpOnly: true 
+                    httpOnly: true // cookie only accessible by server
                 }
 
                 return res.status(200).cookie('accessToken', newAccessToken, options) 
