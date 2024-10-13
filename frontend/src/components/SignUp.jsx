@@ -36,6 +36,7 @@ function SignupCard() {
 
   return (
     <Center height="100vh"> 
+    <Flex flexDirection="column">
       <Flex as="form" onSubmit={handleSubmit} flexDirection="column" height={435} width={400} p={6} boxShadow="lg" borderRadius="md" bg="7E60BF">
         <FormLabel fontSize="2xl" mb={6}>Create an account</FormLabel>
         
@@ -63,8 +64,10 @@ function SignupCard() {
           <Input type="password" placeholder='Confirm Password' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange}/>
         </FormControl>
         
-        <Center>
-          <Button type="submit" colorScheme='purple' mt={6}>Create Account</Button>
+        
+      </Flex>
+      <Center>
+          <Button type="submit" colorScheme='purple' mt={2}>Create Account</Button>
         </Center>
       </Flex>
     </Center>
