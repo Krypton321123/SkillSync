@@ -33,6 +33,7 @@ function Login() {
   return (
     <div>
       <Center height="100vh"> 
+        <Flex flexDirection="column">
         <Flex 
           flexDirection="column" 
           height={300} 
@@ -44,7 +45,7 @@ function Login() {
           onSubmit={handleSubmit}
         >
           <FormLabel fontSize="2xl" mb={6}>
-            Login to SkillSync
+            Welcome back !
           </FormLabel>
           <FormControl isRequired mt={4}>
             <FormLabel>Email</FormLabel>
@@ -54,10 +55,11 @@ function Login() {
             <FormLabel>Password</FormLabel>
             <Input type="password" placeholder="Password" name='password' value={formData.password} onChange={handleChange}/>
           </FormControl>
-          <Center>
-            <Button type="submit" colorScheme="purple" mt={20}>Login</Button>
-          </Center>
           {/* <Link to="/login">Already have an account? Login</Link> */}
+        </Flex>
+        <Center>
+            <Button type="submit" colorScheme="purple" mt={2}>Login to SkillSync</Button>
+          </Center>
         </Flex>
       </Center>
     </div>
