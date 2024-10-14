@@ -46,6 +46,7 @@ const createCommunityController = asyncHandler(async (req, res) => {
     }
 })
 
+
 const joinCommunity = asyncHandler(async (req, res) => {
     const user = req.user; 
 
@@ -121,3 +122,25 @@ const leaveCommunity = asyncHandler(async (req, res) => {
         return res.status(500).json(new ApiError(500, "Internal Server Error"))
     }
 })
+
+const getCommunityController = asyncHandler(async (req, res) => {
+    const user = req.user;
+    const communityId = req.params.id;
+    
+    try {
+        const community = await Community.findById(communityId).populate('Creator');
+    
+        if(!community) {
+            return res.status(404).json(new ApiError(404, "Community not found"));
+        }       
+        return res.status(200).json(new ApiResponse(200, community, "Community fetched successfully"))
+    }
+    catch(err) {
+        console.log(err);
+        return res.status(500).json(new ApiError(500, "Internal Server Error"));
+    }
+})
+
+
+export { createCommunityController , getCommunityController };
+

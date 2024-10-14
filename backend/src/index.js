@@ -1,6 +1,7 @@
 import dotenv from "dotenv"; 
 import { connectDB } from "./db/connect.mongodb.js";
 import { app } from "./app.js";
+
 // import { connect } from "mongoose";
 
 dotenv.config(); // inits env file 
