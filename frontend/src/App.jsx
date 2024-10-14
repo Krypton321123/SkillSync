@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       {/* <SignUp /> */}
-      <Login />
-      {/* <CreateCommunityCard /> */}
+      {/* <Login /> */}
+      <CreateCommunityCard />
     </>
   )
 }
