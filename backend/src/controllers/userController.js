@@ -121,5 +121,16 @@ const loginController = asyncHandler(async (req, res) => {
     }
 })
 
+const logoutController = asyncHandler(async(req, res)=>{
+    try{
+        res.clearCookie('accessToken', {path: 'route where cookie was set'});
+        res.clearCookie('refreshToken', {path: 'route where cookie was set'});
+        return res.status(200).json(new ApiResponse(200, {}, "Logged out successfully"));
+    } catch(err){
+        console.log(err.message)
+        return res.status(500).json(new ApiError(500, "Internal Server Error" || err.message))
+    }
+})
 
-export { signUpController, loginController }; 
+
+export { signUpController, loginController , logoutController }; 
