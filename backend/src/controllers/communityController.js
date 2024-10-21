@@ -104,7 +104,7 @@ const leaveCommunity = asyncHandler(async (req, res) => {
             return res.status(404).json(new ApiError(404, "user not a member")); 
         }
 
-        const updatedCommunity = await Community,findOneAndUpdate(
+        const updatedCommunity = await Community.findOneAndUpdate(
             {_id: communityID}, 
             {$pull: { members: user._id }}, 
             {new: true}
