@@ -48,7 +48,7 @@ export default isAuthenticated = asyncHandler(async (req, res, next) => {
 
                 return res.status(200).cookie('accessToken', newAccessToken, options) 
                         .json(new ApiResponse(200, {}, "New access token issued"))
-            } catch {
+            } catch(err) {
                 console.log(err.message)
                 res.status(500).json(new ApiError(500, "Error in generating refresh token"))
             }
