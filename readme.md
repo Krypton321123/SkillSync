@@ -48,11 +48,10 @@ overall architecture
 
   # Urgent Tasks 
 
-  - Set Up cloudinary -- Most urgent rn 
-  - Need to make a logout route -- Mukti  
-  - Hook signup page with backend using axios 
-  - Study the architecture a bit 
+  - Dashboard controller - get all data that is relevant to the dashboard controller 
+  - getcommunity - send data that is relevant to the community page 
+  - Community controllers - createCommunityController, searchCommunityController, Join A community, leave a community LEFT SEARCHCOMMUNITYCONTROLLER 
+  - Community Post Created Controller - Create post controller, upvote logic and downvote logic (frontend --> value), remove a upvote and downvote --> a user can both upvote and downvote the same post or downvote should be removed if he upvotes and vice versa --> put this on priority to study  LEFT LIKE CONTROLLER     
+  - rate limiting, LEFT 
 
-  - Community controllers - createCommunityController, searchCommunityController, Join A community, leave a community
-  - Community Post Created Controller - Create post controller, upvote logic and downvote logic (frontend --> value), remove a upvote and downvote --> a user can both upvote and downvote the same post or downvote should be removed if he upvotes and vice versa --> put this on priority to study 
-  - rate limiting, 
+  WE NEED FRONTEND FAST 
