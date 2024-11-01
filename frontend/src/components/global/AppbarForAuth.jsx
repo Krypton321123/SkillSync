@@ -12,7 +12,7 @@ export default function AppBarForAuth({children}) {
                     <button onClick={(e) => {
                         e.preventDefault();
                         navigate('/signup');
-                    }} className={"mr-5 border-2 p-[0.3rem] hover:bg-purpleBg"}>Register
+                    }} className={"mr-5 border-2 p-[0.3rem] hover:bg-purpleBg rounded-md"}>Register
                     </button>
 
                     <button onClick={(e) => {
