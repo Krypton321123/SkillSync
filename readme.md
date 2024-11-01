@@ -42,16 +42,22 @@ overall architecture
   Frontend: 
   - Postpone having a universal sidebar - v2 it is too much hassle 
 
-  # Checkpoints 
-
-  - 16/10/2024 --> user authentication, dashboard, ability to create community, join or leave community, create a post full fledged, abilty to comment. Aspiring -> rules for communities 
 
   # Urgent Tasks 
 
-  - Dashboard controller - get all data that is relevant to the dashboard controller 
-  - getcommunity - send data that is relevant to the community page 
-  - Community controllers - createCommunityController, searchCommunityController, Join A community, leave a community LEFT SEARCHCOMMUNITYCONTROLLER 
-  - Community Post Created Controller - Create post controller, upvote logic and downvote logic (frontend --> value), remove a upvote and downvote --> a user can both upvote and downvote the same post or downvote should be removed if he upvotes and vice versa --> put this on priority to study  LEFT LIKE CONTROLLER     
-  - rate limiting, LEFT 
+    - Appbar for normal site (fe) -> Raj 
+    - dashboard design + work (fe + be) -> Raj backend only
+    - create community page (fe) 
+    - create post page (fe)
+    - chat functionality (fe + be + need to study ws) ->
+    - post functionality (frontend + backend) ->
+    - logout button (fe) ->
+    - update profile (fe + be) ->
+    - detailed profile page (fe + be) ->
+    - posts from community and people user is friends with should show up front on dashboard (fe + be) ->
+    - create community page (frontend) ->
+    - putting logo on the appbar -> mukti
+
+    
 
   WE NEED FRONTEND FAST 
