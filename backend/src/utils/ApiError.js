@@ -3,7 +3,7 @@ class ApiError extends Error {
         super(message), 
         this.status = status, 
         this.data = data, 
-        this.sucess = false, 
+        this.success = false, 
         this.errors = errors
     }
 }
