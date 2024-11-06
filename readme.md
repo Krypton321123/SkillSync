@@ -50,10 +50,11 @@ overall architecture
     - create community page (fe) 
     - create post page (fe)
     - chat functionality (fe + be + need to study ws) ->
-    - post functionality (frontend + backend) ->
+    - community functionality - high priority 
+    - post functionality (frontend + backend) -> high priority 
     - logout button (fe) ->
-    - update profile (fe + be) ->
-    - detailed profile page (fe + be) ->
+    - update profile (fe + be) -> high priority 
+    - detailed profile page (fe + be) -> high priority 
     - posts from community and people user is friends with should show up front on dashboard (fe + be) ->
     - create community page (frontend) ->
     - putting logo on the appbar -> mukti
