@@ -25,7 +25,7 @@ const AppBar = ({children}) => {
                 : <>
                     <button onClick={(e) =>{ 
                         e.preventDefault(); 
-                        navigate('/login')
+                        navigate('/signin')
                     }} className='login font-semibold w-16 p-2 hover:bg-gray-300 rounded-3xl'>Login</button>
                     <button onClick={(e) => {
                         e.preventDefault(); 

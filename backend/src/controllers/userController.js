@@ -16,6 +16,7 @@ const generateRefreshAndAccessToken = (user) => {
         return {
             accessToken, refreshToken
         }
+        console.log(1)
     } catch(err) {
         return null; 
     }
@@ -35,13 +36,13 @@ const signUpController = asyncHandler(async (req, res) => {
             return res.status(409).json(new ApiError(409, "Password doesn't match confirm password")); 
         }   
 
-        // const userAlreadyExists = await User.findOne({
-        //     email_id: emailId
-        // }); 
+        const userAlreadyExists = await User.findOne({
+            email_id: emailId
+        }); 
 
-        // if(userAlreadyExists) {
-        //     return res.status(401).json(new ApiError(401, "User already exists")); 
-        // }
+        if(userAlreadyExists) {
+            return res.status(401).json(new ApiError(401, "User already exists")); 
+        }
 
         const salt = await bcrypt.genSalt(10); 
 
@@ -61,7 +62,7 @@ const signUpController = asyncHandler(async (req, res) => {
             return res.status(401).json(new ApiError(401, "Failed to generate refresh and access tokens")); 
         }
 
-        // await user.save(); 
+        await user.save(); 
         
         const dataToSend = {user: {
             _id: user._id, 
