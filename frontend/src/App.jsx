@@ -23,7 +23,7 @@ function App() {
     //   </BrowserRouter>
     // </>
     <>
-    <PostCard />
+    <AppBar><CreateCommunityCard/></AppBar>
     
     </>
   )
