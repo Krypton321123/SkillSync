@@ -12,20 +12,21 @@ import PostCard from './components/PostComponents/PostCard.jsx'
 function App() {
 
   return (
-    // <>
-    //   <BrowserRouter>
-    //     <Routes>
-    //       <Route path="/signup" element={<AppBarForAuth><SignUp /></AppBarForAuth>}/>
-    //       <Route path="/signin" element={<AppBarForAuth><Login /></AppBarForAuth>}/>
-    //       <Route path="/test" element={<AppBarForAuth><Login /></AppBarForAuth>}/> 
-    //       {/* // this route is for testing */}
-    //     </Routes>
-    //   </BrowserRouter>
-    // </>
     <>
-    <AppBar><CreateCommunityCard/></AppBar>
-    
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signup" element={<AppBarForAuth><SignUp /></AppBarForAuth>}/>
+          <Route path="/signin" element={<AppBarForAuth><Login /></AppBarForAuth>}/>
+          <Route path="/test" element={<AppBar><Login /></AppBar>}/> 
+          {/* // this route is for testing */}
+        </Routes>
+      </BrowserRouter>
+      <PostCard />
     </>
+    // <>
+    // <AppBarForAuth><CreateCommunityCard/></AppBarForAuth>
+    
+    // </>
   )
 }
 

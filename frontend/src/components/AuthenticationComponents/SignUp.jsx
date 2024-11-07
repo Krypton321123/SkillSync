@@ -9,6 +9,7 @@ import {
 import { Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+// import { toast } from 'react-toastify';
 
 function SignupCard() {
   const [formData , setFormData] = useState({
@@ -27,8 +28,12 @@ function SignupCard() {
     e.preventDefault();  // Prevent the default form submission behavior
 
     try {
-      const response = await axios.post("http://localhost:5173/api/v1/use/signup", formData);
+      const response = await axios.post("http://localhost:8000/api/v1/user/signup", formData);
       console.log(response);
+      if(response.data.data.success) {
+        // toast("User login successful")
+        console.log("User login successful");
+      }
     } catch(error) {
       console.log("Error in signing up", error);
     }
@@ -37,7 +42,7 @@ function SignupCard() {
   return (
     <Center height="100vh"> 
     <Flex flexDirection="column">
-      <Flex as="form" onSubmit={handleSubmit} flexDirection="column" height={435} width={400} p={6} boxShadow="lg" borderRadius="md" bg="7E60BF">
+      <Flex as="form" flexDirection="column" height={435} width={400} p={6} boxShadow="lg" borderRadius="md" bg="7E60BF">
         <FormLabel fontSize="2xl" mb={6}>Create an account</FormLabel>
         
         <Flex flexDirection="row" gap={3}>
@@ -67,7 +72,7 @@ function SignupCard() {
         
       </Flex>
       <Center>
-          <Button type="submit" colorScheme='purple' mt={2}>Create Account</Button>
+          <Button type="submit" onClick={handleSubmit} colorScheme='purple' mt={2}>Create Account</Button>
         </Center>
       </Flex>
     </Center>

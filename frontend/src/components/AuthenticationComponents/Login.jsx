@@ -17,15 +17,15 @@ function Login() {
     password: ''
   })
 
-  const handleChange = (e)=> {
+  const handleChange = (e) => {
     setFormData({...formData , [e.target.name]:e.target.value});
   }
 
   const handleSubmit = async(e)=> {
     e.preventDefault();  // Prevent the default form submission behavior
-
+    console.log("handle submit me aa gaye")
     try {
-      const response = await axios.post("http://localhost:5173/api/v1/use/login", formData);
+      const response = await axios.post("http://localhost:8000/api/v1/user/login", formData);
       console.log(response);
     } catch(error) {
       console.log("Error in Login", error);
@@ -43,7 +43,6 @@ function Login() {
           boxShadow="lg" 
           borderRadius="md"
           as="form"
-          onSubmit={handleSubmit}
         >
           <FormLabel fontSize="2xl" mb={6}>
             Welcome back !
@@ -59,7 +58,7 @@ function Login() {
           {/* <Link to="/login">Already have an account? Login</Link> */}
         </Flex>
         <Center>
-            <Button type="submit" colorScheme="purple" mt={2}>Login to SkillSync</Button>
+            <Button type="submit" onClick={handleSubmit} colorScheme="purple" mt={2}>Login to SkillSync</Button>
           </Center>
         </Flex>
       </Center>
