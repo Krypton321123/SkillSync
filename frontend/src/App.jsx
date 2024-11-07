@@ -21,6 +21,7 @@ function App() {
           {/* // this route is for testing */}
         </Routes>
       </BrowserRouter>
+      <PostCard />
     </>
     // <>
     // <AppBarForAuth><CreateCommunityCard/></AppBarForAuth>
