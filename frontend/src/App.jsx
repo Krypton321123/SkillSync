@@ -17,11 +17,11 @@ function App() {
         <Routes>
           <Route path="/signup" element={<AppBarForAuth><SignUp /></AppBarForAuth>}/>
           <Route path="/signin" element={<AppBarForAuth><Login /></AppBarForAuth>}/>
-          <Route path="/test" element={<AppBar><Login /></AppBar>}/> 
+          <Route path="/test" element={<AppBar><PostCard /></AppBar>}/> 
           {/* // this route is for testing */}
         </Routes>
       </BrowserRouter>
-      <PostCard />
+      
     </>
     // <>
     // <AppBarForAuth><CreateCommunityCard/></AppBarForAuth>
