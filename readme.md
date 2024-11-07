@@ -58,6 +58,7 @@ overall architecture
     - posts from community and people user is friends with should show up front on dashboard (fe + be) ->
     - create community page (frontend) ->
     - putting logo on the appbar -> mukti
+    - Add chat functionality (fe + be + need to) -> high priority
 
     
 

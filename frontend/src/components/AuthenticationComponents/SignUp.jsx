@@ -9,7 +9,7 @@ import {
 import { Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 function SignupCard() {
   const [formData , setFormData] = useState({
@@ -31,7 +31,8 @@ function SignupCard() {
       const response = await axios.post("http://localhost:8000/api/v1/user/signup", formData);
       console.log(response);
       if(response.data.data.success) {
-        toast("User login successful")
+        // toast("User login successful")
+        console.log("User login successful");
       }
     } catch(error) {
       console.log("Error in signing up", error);
