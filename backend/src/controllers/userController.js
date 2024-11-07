@@ -133,5 +133,38 @@ const logoutController = asyncHandler(async(req, res)=>{
     }
 })
 
+const updateUserController = asyncHandler(async (req, res) => {
+    const user = req.user 
 
-export { signUpController, loginController , logoutController }; 
+    try{
+        console.log(user)
+        const { firstName, lastName, profilePicture } = req.body; 
+        
+        const updateSchema = {}; 
+        
+        if(firstName) updateSchema.first_name = firstName; 
+        if(lastName) updateSchema.last_name = lastName; 
+        if(profilePicture) updateSchema.profilePicture = profilePicture;
+
+        console.log(updateSchema)
+
+        const updatedUser = await User.findOneAndUpdate(
+            {_id: user._id}, // find the document, 
+            { $set: updateSchema }, // update the document 
+            {new: true} 
+        )
+        console.log(updatedUser)
+        if(!updatedUser){
+            return res.status(409).json(new ApiError(409, "User is not updated")); 
+        }
+
+        return res.status(200).json(new ApiResponse(200, updatedUser, "User Updated Successfully"))
+
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json(new ApiError(500, "Internal Server Error")); 
+    }
+})
+
+
+export { signUpController, loginController , logoutController, updateUserController }; 
