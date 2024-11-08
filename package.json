@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^9.1.0",
-    "react-toastify": "^10.0.6"
+    "react-toastify": "^10.0.6",
+    "split-pane-react": "^0.1.3"
   }
 }
