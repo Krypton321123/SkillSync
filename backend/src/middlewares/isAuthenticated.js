@@ -1,11 +1,11 @@
-import { asyncHandler } from "../utils/asyncHandler"
-import { isEmpty } from "../utils/isEmptyFields"; 
-import { ApiError } from "../utils/ApiError"
-import { ApiResponse } from "../utils/ApiResponse"
-import * as jwt from 'jsonwebtoken'
-import { User } from "../models/user.model";
+import { asyncHandler } from "../utils/asyncHandler.js"
+import { isEmpty } from "../utils/isEmptyFields.js"; 
+import { ApiError } from "../utils/ApiError.js"
+import { ApiResponse } from "../utils/ApiResponse.js"
+import jwt from 'jsonwebtoken'
+import { User } from "../models/user.model.js";
 
-export default isAuthenticated = asyncHandler(async (req, res, next) => {
+export const isAuthenticated = asyncHandler(async (req, res, next) => {
     try {
         const accessToken  = req.cookies?.accessToken; 
         
