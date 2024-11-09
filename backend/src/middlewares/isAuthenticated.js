@@ -12,7 +12,7 @@ export const isAuthenticated = asyncHandler(async (req, res, next) => {
         if(isEmpty(accessToken)) {
             return res.status(401).json(new ApiError(401, "Token is empty"))
         }
-
+ 
         const decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET); 
         const user = await User.findOne({ _id: decodedToken._id })
 
