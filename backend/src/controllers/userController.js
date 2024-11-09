@@ -166,5 +166,32 @@ const updateUserController = asyncHandler(async (req, res) => {
     }
 })
 
+const followUnfollowUserController = asyncHandler(async(req,res)=>{
+    const user = req.user;  //a 
+    const userIdToFollow = req.body.userId; //b
+    try{
+        const userToFollow = await User.findById(userIdToFollow);
+        if(!userToFollow) return res.status(404).json(new ApiError(404, "User not found"));
+        if(user.followers.includes(userToFollow)){
+            // remove the user a from followers list of that user b
+            // remove the user b  from the following list of user a
 
-export { signUpController, loginController , logoutController, updateUserController }; 
+        }
+        else{
+            // add the user a to followers list of that user b
+            // add the user b  to the following list of user a  in the user a's document
+        }
+        await user.save();
+        await userToFollow.save();
+        return res.status(200).json(new ApiResponse(200, {}, "Followed User"));
+    }
+    catch(err){
+        console.log(err.message)
+        return res.status(500).json(new ApiError(500, "Internal Server Error" || err.message))
+    }
+})
+
+
+
+
+export { signUpController, loginController , logoutController, updateUserController , followUnfollowUserController } from '../../../../../../../../../../services; 
