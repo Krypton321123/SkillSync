@@ -2,7 +2,11 @@ import React from 'react'
 
 const DetailedCommunity = () => {
   return (
-    <div></div>
+    <div>
+      <div className=''>
+
+      </div>
+    </div>
   )
 }
 
