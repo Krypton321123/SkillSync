@@ -27,7 +27,15 @@ const userSchema = mongoose.Schema({
     refreshToken: {
         type: String, 
         required: true,
-    }   // will keep adding more to this for now this is enough 
+    }, 
+    followingList: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: 'users'
+    },
+    followerList: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: 'users'
+    }  // will keep adding more to this for now this is enough 
 }, {timestamps: true}); 
 
 // hash passwords at login and signup instead of now. 
