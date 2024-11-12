@@ -25,17 +25,7 @@ const communityPostSchema = mongoose.Schema({
         min: 10, 
         max: 120, 
     }, 
-    votes: {
-        type: mongoose.Types.Schema.ObjectId, 
-        ref: 'voteModel'
-    }
-})
-
-const voteSchema = mongoose.Schema({
-    postID: {
-        type: mongoose.Types.Schema.ObjectId, 
-        ref: 'CommunityPost'
-    }, 
+    
     likedUsers: {
         type: [mongoose.Types.Schema.ObjectId], // tells mongoose to look in the users table for the object id array
         ref: 'users'
@@ -46,6 +36,37 @@ const voteSchema = mongoose.Schema({
     }
 })
 
+const userPostSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'users'
+    }, 
+    imageURL: {
+        type: String, // assuming we are using cloudinary 
+    }, 
+    title: {
+        type: String, 
+        min: 6, 
+        max: 40,
+        required: true   
+    }, 
+    description: {
+        type: String, 
+        min: 10, 
+        max: 120, 
+    }, 
+    likedUsers: {
+        type: [mongoose.Types.Schema.ObjectId], // tells mongoose to look in the users table for the object id array
+        ref: 'users'
+    }, 
+    dislikedUsers: {
+        type: [mongoose.Types.Schema.ObjectId], 
+        ref: 'users'
+    }
+    
+})
 
-export const voteModel = mongoose.model('voteModel', voteSchema) 
+
+ 
 export const communityPost = mongoose.model('CommunityPost', communityPostSchema);  
+export const userPost = mongoose.model('UserPost', userPostSchema)

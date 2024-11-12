@@ -24,7 +24,7 @@ function Feed () {
     }
 
     // Its a solution event listeners I dont understand this completelty yet used for testing purposes.
-
+    // this code is giving a infinite loop error, kindly check it out 
   })
 
   const layoutCSS = {
