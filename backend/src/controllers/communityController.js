@@ -142,5 +142,5 @@ const getCommunityController = asyncHandler(async (req, res) => {
 })
 
 
-export { createCommunityController , getCommunityController };
+export { createCommunityController , getCommunityController, joinCommunity, leaveCommunity };
 
