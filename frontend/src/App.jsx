@@ -8,6 +8,7 @@ import AppBarForAuth from './components/global/AppbarForAuth.jsx'
 // import AppBar from './components/global/appBar.jsx'
 import PostCard from './components/PostComponents/PostCard.jsx'
 import Feed from './components/Pages/Feed.jsx'
+import DefaultPage from './components/global/DefaultPage.jsx'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signin" element={<AppBarForAuth><Login /></AppBarForAuth>}/>
           <Route path="/test" element={<AppBar><Feed /></AppBar>}/> 
           {/* // this route is for testing */}
+          <Route path="/" element={<DefaultPage />} />
         </Routes>
       </BrowserRouter>
       
