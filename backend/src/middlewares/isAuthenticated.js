@@ -24,7 +24,7 @@ export const isAuthenticated = asyncHandler(async (req, res, next) => {
         next(); 
 
     } catch(err) {
-        if(err.name == "TokenExpiredError") {
+        if(err.name === "TokenExpiredError") {
             const refreshToken  = req.cookies.refreshToken; 
 
             if(!refreshToken) {
