@@ -1,64 +1,100 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import {
   FormControl,
   FormLabel,
-  Input,  
+  Input,
   Flex,
-  Center,  
+  Center,
+  Button,
+  useToast, // Import Chakra's toast hook
 } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
-  const login = "login";
-  const [formData , setFormData] = useState({
+  const toast = useToast(); // Initialize the toast hook
+  const [formData, setFormData] = useState({
     emailId: '',
-    password: ''
-  })
+    password: '',
+  });
 
   const handleChange = (e) => {
-    setFormData({...formData , [e.target.name]:e.target.value});
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = async(e)=> {
-    e.preventDefault();  // Prevent the default form submission behavior
-    console.log("handle submit me aa gaye")
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
     try {
-      const response = await axios.post("http://localhost:8000/api/v1/user/login", formData);
+      const response = await axios.post(
+        'http://localhost:8000/api/v1/user/login',
+        formData
+      );
       console.log(response);
-    } catch(error) {
-      console.log("Error in Login", error);
+      if (response) {
+        toast({
+          title: 'Logged in successfully!',
+          status: 'success',
+          duration: 3000, // Toast disappears after 3 seconds
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.log('Error in Login', error);
+      toast({
+        title: 'Error in Login!',
+        description: error.response?.data?.message || 'Something went wrong.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
     }
-  }
+  };
+
   return (
     <div>
-      <Center height="100vh"> 
+      <Center height="100vh">
         <Flex flexDirection="column">
-        <Flex 
-          flexDirection="column" 
-          height={300} 
-          width={400} 
-          p={6} 
-          boxShadow="lg" 
-          borderRadius="md"
-          as="form"
-        >
-          <FormLabel fontSize="2xl" mb={6}>
-            Welcome back !
-          </FormLabel>
-          <FormControl isRequired mt={4}>
-            <FormLabel>Email</FormLabel>
-            <Input type="email" placeholder="Email" name='emailId' value={formData.emailId} onChange={handleChange}/>
-          </FormControl>
-          <FormControl isRequired mt={4}>
-            <FormLabel>Password</FormLabel>
-            <Input type="password" placeholder="Password" name='password' value={formData.password} onChange={handleChange}/>
-          </FormControl>
-          {/* <Link to="/login">Already have an account? Login</Link> */}
-        </Flex>
-        <Center>
-            <Button type="submit" onClick={handleSubmit} colorScheme="purple" mt={2}>Login to SkillSync</Button>
+          <Flex
+            flexDirection="column"
+            height={300}
+            width={400}
+            p={6}
+            boxShadow="lg"
+            borderRadius="md"
+            as="form"
+          >
+            <FormLabel fontSize="2xl" mb={6}>
+              Welcome back!
+            </FormLabel>
+            <FormControl isRequired mt={4}>
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="email"
+                placeholder="Email"
+                name="emailId"
+                value={formData.emailId}
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl isRequired mt={4}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </FormControl>
+          </Flex>
+          <Center>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              colorScheme="purple"
+              mt={2}
+            >
+              Login to SkillSync
+            </Button>
           </Center>
         </Flex>
       </Center>

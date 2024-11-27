@@ -106,6 +106,7 @@ const getSelfPostsController = asyncHandler(async(req,res)=>{
     try{
         const posts = await Post.find({user: user._id}).sort({date: -1});
         res.status(200).json({posts});
+
     }
     catch(error){
         console.error(error);
@@ -114,7 +115,18 @@ const getSelfPostsController = asyncHandler(async(req,res)=>{
 })
 
 const getFollowedPostsController = asyncHandler(async(req,res)=>{
-    
+    const user = req.user;
+    try{
+        const followingIds = user.following;
+        const posts = await Post.find({user: {$in: followingIds}}).sort({date: -1});
+        res.status(200).json({posts});
+
+
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json(new ApiError(500, "Sorry, Couldn't get posts" || error.message));
+    }    
 })
 
 export { addPostController, deletePostController, upVoteController, downVoteController, getSelfPostsController }
