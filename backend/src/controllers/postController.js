@@ -129,3 +129,4 @@ const getFollowedPostsController = asyncHandler(async(req,res)=>{
     }    
 })
 
+export { addPostController, deletePostController, upVoteController, downVoteController, getSelfPostsController }
