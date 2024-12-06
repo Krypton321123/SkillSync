@@ -72,7 +72,9 @@ const signUpController = asyncHandler(async (req, res) => {
         }, accessToken}; 
 
         const options = {
-            httpOnly: true, // accessible only by the server 
+            httpOnly: true, // accessible only by the server
+            secure: true,
+            domain: "localhost"
         }
 
         return res.status(200).cookie('accessToken', accessToken, options).cookie('refreshToken', refreshToken, options)
@@ -191,7 +193,33 @@ const followUnfollowUserController = asyncHandler(async(req,res)=>{
     }
 })
 
+const getUserProfile = asyncHandler(async (req, res) => {
+    const user = req.user;
+
+    try {
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        console.log(user)
+
+        res.status(200).json({
+            success: true,
+            data: {
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email_id,
+                followers: user.followerList.length,
+                following: user.followingList.length,
+                joinedCommunities: user.joinedCommunities || [],
+            },
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Something went wrong" });
+    }
+});
 
 
 
-export { signUpController, loginController , logoutController, updateUserController , followUnfollowUserController }
+export { signUpController, loginController , logoutController, updateUserController , followUnfollowUserController, getUserProfile }

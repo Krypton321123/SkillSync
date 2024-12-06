@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import jwt from 'jsonwebtoken'; 
+import jwt from 'jsonwebtoken';
+import {Community} from "./community.model.js";
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     first_name: {
         type: String, 
         minLength: 3, 
@@ -35,7 +36,11 @@ const userSchema = mongoose.Schema({
     followerList: {
         type: [mongoose.Schema.Types.ObjectId], 
         ref: 'users'
-    }  // will keep adding more to this for now this is enough 
+    },
+    joinedCommunities: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Community'
+    }// will keep adding more to this for now this is enough
 }, {timestamps: true}); 
 
 // hash passwords at login and signup instead of now. 

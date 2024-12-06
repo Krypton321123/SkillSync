@@ -1,12 +1,14 @@
-import { asyncHandler } from "../utils/asyncHandler";
-import { ApiError } from "../utils/ApiError";
-import { ApiResponse } from "../utils/ApiResponse";
-import { isEmpty } from "../utils/isEmptyFields";
-import { Community } from "../models/community.model";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { isEmpty } from "../utils/isEmptyFields.js";
+import { Community } from "../models/community.model.js";
 import mongoose from "mongoose";
+import {User} from "../models/user.model.js";
 
 const createCommunityController = asyncHandler(async (req, res) => {
-    const user = req.user; 
+    const user = req.user;
+    console.log("user is this: ", user);
 
     try { 
 
@@ -17,8 +19,10 @@ const createCommunityController = asyncHandler(async (req, res) => {
         }
 
 
+        console.log(user._id)
+
         const communityCreating = new Community({
-            Creator: user._id, 
+            creator: user._id,
             name: name,  
             description: description 
         })
@@ -123,24 +127,65 @@ const leaveCommunity = asyncHandler(async (req, res) => {
     }
 })
 
-const getCommunityController = asyncHandler(async (req, res) => {
-    const user = req.user;
-    const communityId = req.params.id;
-    
+const getCommunityDetails = asyncHandler(async (req, res) => {
+    console.log("In get community")
+    const { id } = req.params;
+    const userId = req.user._id
+
     try {
-        const community = await Community.findById(communityId).populate('Creator');
-    
-        if(!community) {
-            return res.status(404).json(new ApiError(404, "Community not found"));
-        }       
-        return res.status(200).json(new ApiResponse(200, community, "Community fetched successfully"))
+        const community = await Community.findById(id)
+            .populate("creator", "username")
+            .populate("members", "username")
+            .populate("posts");
+
+        if (!community) {
+            return res.status(404).json({ message: "Community not found" });
+        }
+
+        res.status(200).json({ success: true, data: {community, currentUserId: userId}});
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Something went wrong" });
     }
-    catch(err) {
-        console.log(err);
-        return res.status(500).json(new ApiError(500, "Internal Server Error"));
-    }
-})
+});
+
+const toggleMembership = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user._id;
 
 
-export { createCommunityController , getCommunityController, joinCommunity, leaveCommunity };
+    const community = await Community.findById(id);
+    const user = await User.findById(userId);
+
+    if (!community) {
+        return res.status(404).json(new ApiError(404, "Community not found"));
+    }
+
+    const isMember = community.members.includes(userId);
+
+    if (isMember) {
+        // Remove user from members
+        community.members.pull(userId);
+        user.joinedCommunities.pull(id);
+    } else {
+        // Add user to members
+        community.members.push(userId);
+        user.joinedCommunities.push(id)
+    }
+
+
+
+    await community.save();
+    await user.save();
+
+    console.log(community)
+
+    res.status(200).json(new ApiResponse(200, {
+        joined: !isMember,
+    }, isMember ? "User left the community" : "User joined the community"));
+});
+
+
+
+export { createCommunityController , getCommunityDetails, joinCommunity, leaveCommunity, toggleMembership };
 

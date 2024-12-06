@@ -4,18 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7c36c5a-4450-41f7-87ee-b8e946d9c9a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="b7c36c5a-4450-41f7-87ee-b8e946d9c9a4" name="Changes" comment="Dashboard design completed">
+      <change afterPath="$PROJECT_DIR$/backend/src/controllers/searchController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routes/communityRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/CreateCommunity.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/DetailedCommunity.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/global/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/postController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/postController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/communityController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/communityController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/userController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/middlewares/isAuthenticated.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/isAuthenticated.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/models/community.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/community.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/models/post.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/post.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/userRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthenticationComponents/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AuthenticationComponents/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CommunityComponents/DetailedCommunity.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/global/AppBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/global/AppBar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,10 +55,10 @@
     &quot;accountId&quot;: &quot;89d331c0-c7de-4ead-bcef-fdfcdc2f8df6&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -56,8 +79,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -81,8 +104,20 @@
       <workItem from="1730180540752" duration="36000" />
       <workItem from="1730295870544" duration="1602000" />
       <workItem from="1732714203558" duration="64000" />
-      <workItem from="1732714281833" duration="2433000" />
+      <workItem from="1732714281833" duration="11925000" />
+      <workItem from="1733042904513" duration="2171000" />
+      <workItem from="1733251396794" duration="3604000" />
+      <workItem from="1733427030858" duration="5581000" />
     </task>
+    <task id="LOCAL-00001" summary="Dashboard design completed">
+      <option name="closed" value="true" />
+      <created>1732716801041</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732716801041</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,5 +144,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Dashboard design completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard design completed" />
   </component>
 </project>
