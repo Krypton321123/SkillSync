@@ -41,7 +41,9 @@ const AppBar = ({ children }) => {
         <>
             <div className="w-full h-16 border-y-2 flex justify-between items-center">
                 <div className="logo">
-                    <span className="text-xl whitespace-nowrap px-2">SkillSync</span>
+                    <button className="text-xl whitespace-nowrap px-2" onClick={()=>{
+                        navigate('/');
+                    }}>SkillSync</button>
                 </div>
                 <div className="relative search hidden md:flex lg:flex justify-start items-center">
                     <svg
@@ -107,11 +109,11 @@ const AppBar = ({ children }) => {
                             <button
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    navigate('/signup');
+                                    navigate('/logout');
                                 }}
                                 className="signup font-semibold mr-2 w-20 p-2 hover:bg-gray-300 rounded-3xl"
                             >
-                                Sign Up
+                                Logout
                             </button>
                         </>
                     )}

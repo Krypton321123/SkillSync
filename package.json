@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zoomus/websdk": "^2.18.3",
+    "base-64": "^1.0.0",
     "chakra-icons": "^0.0.0",
     "concurrently": "^9.1.0",
     "react-toastify": "^10.0.6",

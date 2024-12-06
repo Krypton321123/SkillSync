@@ -194,6 +194,7 @@ const followUnfollowUserController = asyncHandler(async(req,res)=>{
 })
 
 const getUserProfile = asyncHandler(async (req, res) => {
+    console.log('Im here from controller');
     const user = req.user;
 
     try {

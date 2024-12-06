@@ -9,8 +9,10 @@ import {
   useToast, // Import Chakra's toast hook
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate(); // Use the navigate hook to navigate to different routes
   const toast = useToast(); // Initialize the toast hook
   const [formData, setFormData] = useState({
     emailId: '',
@@ -36,6 +38,8 @@ function Login() {
           duration: 3000, // Toast disappears after 3 seconds
           isClosable: true,
         });
+        navigate('/test'); // Navigate to the dashboard after successful login
+
       }
     } catch (error) {
       console.log('Error in Login', error);

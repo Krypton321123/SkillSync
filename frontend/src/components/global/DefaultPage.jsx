@@ -14,10 +14,10 @@ const DefaultPage = () => {
       overflow="hidden"
      
     >
-      <Heading fontSize="4xl" mb={6}>
+      <Heading fontSize="6xl" mb={6}>
         Welcome to SkillSync
       </Heading>
-      <Text fontSize="xl" mb={6}>
+      <Text fontSize="3xl" mb={6}>
         Your one-stop platform for skill-based connections, mentorship, and growth.
       </Text>
       
@@ -25,11 +25,9 @@ const DefaultPage = () => {
         <Image 
           src="./logo.png" 
           alt="SkillSync Preview" 
-          borderRadius="lg"
           mx="auto"
-          shadow="lg"
-          width="270px"
-          height="250px"
+          width="370px"
+          height="300px"
           objectFit="cover"
         />
       </Box>

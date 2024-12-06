@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import RoomCard from "../../Room/RoomCard";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     // Fetch user data on component mount
     useEffect(() => {
         const fetchUserData = async () => {
+            console.log("Im here");
             try {
                 const accessToken = localStorage.getItem("accessToken");
                 if (!accessToken) {
@@ -20,6 +24,7 @@ const Sidebar = ({ children }) => {
                         Authorization: `Bearer ${accessToken}`,
                     },
                 });
+                console.log(response);
 
                 setUserData(response.data.data);
 
@@ -97,10 +102,10 @@ const Sidebar = ({ children }) => {
                         <h2 className="font-bold">{userData.firstName}&nbsp;</h2>
                         <h2 className="font-bold">{userData.lastName}</h2>
                         </div>
-                        <p className="text-sm">
+                        <p className="text-sm mb-4">
                             {userData.followers} Followers | {userData.following} Following
                         </p>
-                        <a href="/updateProfile">
+                        <a href="/updateProfile" className="mt-3">
                             <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-md">
                                 Update Profile
                             </button>
@@ -108,6 +113,13 @@ const Sidebar = ({ children }) => {
                         <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-md">
                             View Followers/Following
                         </button>
+                        <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-md" onClick={()=>{
+                            navigate("/meeting")
+ 
+                        }}>
+                            Create Room
+                        </button>
+                        
                         <div>
                             <h3 className="font-bold text-lg mb-2">Joined Communities</h3>
                             <ul className="space-y-2">
