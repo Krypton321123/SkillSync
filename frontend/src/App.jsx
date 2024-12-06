@@ -10,6 +10,7 @@ import UpdateProfileCard from "./components/UserComponents/UpdateProfileCard.jsx
 import CreateCommunity from "./components/Pages/CreateCommunity.jsx";
 import DetailedCommunity from "./components/Pages/DetailedCommunity.jsx";
 import Sidebar from "./components/global/Sidebar.jsx";
+import DefaultPage from './components/global/DefaultPage.jsx'
 
 
 
@@ -19,6 +20,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<DefaultPage/>} />
           <Route path="/signup" element={<AppBarForAuth><SignUp /></AppBarForAuth>}/>
           <Route path="/signin" element={<AppBarForAuth><Login /></AppBarForAuth>}/>
           <Route path="/test" element={<AppBar><Sidebar><Dashboard /></Sidebar></AppBar>}/>

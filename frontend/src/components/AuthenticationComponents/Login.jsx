@@ -10,7 +10,9 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 
+
 function Login() {
+
   const toast = useToast(); // Initialize the toast hook
   const [formData, setFormData] = useState({
     emailId: '',
@@ -36,6 +38,8 @@ function Login() {
           duration: 3000, // Toast disappears after 3 seconds
           isClosable: true,
         });
+       
+
       }
     } catch (error) {
       console.log('Error in Login', error);
