@@ -1,6 +1,7 @@
-import mongoose from 'mongoose'; 
+import mongoose from 'mongoose';
+import { User } from "./user.model.js";
 
-const communityPostSchema = mongoose.Schema({
+const communityPostSchema = new mongoose.Schema({
     imageURL: {
         type: String, // assuming we are using cloudinary 
     }, 
@@ -27,11 +28,11 @@ const communityPostSchema = mongoose.Schema({
     }, 
     
     likedUsers: {
-        type: [mongoose.Types.Schema.ObjectId], // tells mongoose to look in the users table for the object id array
+        type: [mongoose.Schema.Types.ObjectId], // tells mongoose to look in the users table for the object id array
         ref: 'users'
     }, 
     dislikedUsers: {
-        type: [mongoose.Types.Schema.ObjectId], 
+        type: [mongoose.Schema.Types.ObjectId],
         ref: 'users'
     }
 })
@@ -56,11 +57,11 @@ const userPostSchema = new mongoose.Schema({
         max: 120, 
     }, 
     likedUsers: {
-        type: [mongoose.Types.Schema.ObjectId], // tells mongoose to look in the users table for the object id array
+        type: [mongoose.Schema.Types.ObjectId], // tells mongoose to look in the users table for the object id array
         ref: 'users'
     }, 
     dislikedUsers: {
-        type: [mongoose.Types.Schema.ObjectId], 
+        type: [mongoose.Schema.Types.ObjectId],
         ref: 'users'
     }
     

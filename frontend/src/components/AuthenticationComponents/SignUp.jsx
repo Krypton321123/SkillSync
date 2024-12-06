@@ -24,20 +24,24 @@ function SignupCard() {
     setFormData({...formData , [e.target.name]:e.target.value});
   }
 
-  const handleSubmit = async(e)=> {
-    e.preventDefault();  // Prevent the default form submission behavior
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
       const response = await axios.post("http://localhost:8000/api/v1/user/signup", formData);
-      console.log(response);
-      if(response.data.data.success) {
-        // toast("User login successful")
-        console.log("User login successful");
+      if (response.data.success) {
+        const { accessToken, refreshToken } = response.data.data;
+
+        // Store tokens in localStorage
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+
+        console.log("User signup successful");
       }
-    } catch(error) {
-      console.log("Error in signing up", error);
+    } catch (error) {
+      console.error("Error in signing up", error);
     }
-  }
+  };
 
   return (
     <Center height="100vh"> 

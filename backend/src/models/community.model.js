@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import { User } from "./user.model";
+import { User } from "./user.model.js";
+import { communityPost  } from "./post.model.js";
 
-const communitySchema = mongoose.Schema({
+const communitySchema = new mongoose.Schema({
     creator: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'users', 
