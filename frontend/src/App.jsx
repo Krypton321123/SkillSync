@@ -12,10 +12,9 @@ import DetailedCommunity from "./components/Pages/DetailedCommunity.jsx";
 import Sidebar from "./components/global/Sidebar.jsx";
 import DefaultPage from './components/global/DefaultPage.jsx'
 import RoomCard from './Room/RoomCard.jsx'
-
-
-
-
+import DetailedUserPage from "./components/Pages/DetailedUser.jsx";
+import ChatPage from "./components/Pages/ChatPage.jsx";
+import CreatePost from "./components/Pages/CreatePost.jsx";
 
 
 function App() {
@@ -33,7 +32,10 @@ function App() {
           <Route path={"/updateProfile"} element={<Sidebar><AppBar><UpdateProfileCard /></AppBar></Sidebar>}/>
           <Route path={"/createCommunity"} element={<Sidebar><AppBar><CreateCommunity /></AppBar></Sidebar>}/>
           <Route path={"/detailedcommunity/:id"} element={<Sidebar><AppBar><DetailedCommunity /></AppBar></Sidebar>}/>
-          <Route path='/meeting' element={<RoomCard />}/>
+          <Route path='/room' element={<Sidebar><AppBar><RoomCard /></AppBar></Sidebar>}/>
+          <Route path={'/user/:id'} element={<Sidebar><AppBar><DetailedUserPage /></AppBar></Sidebar>}/>
+          <Route path={'/chat'} element={<Sidebar><AppBar><ChatPage /></AppBar></Sidebar>}/>
+          <Route path={"/createPost"} element={<Sidebar><AppBar><CreatePost /></AppBar></Sidebar>}/>
           {/* // this route is for testing */}
           
         </Routes>

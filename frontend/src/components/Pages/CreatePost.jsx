@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CreateCommunity = () => {
-    // State for form inputs
-    const [name, setName] = useState("");
+const CreatePost = () => {
+
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
-    const accessToken = localStorage.getItem("accessToken")
+    const accessToken = localStorage.getItem("accessToken");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validation
-        if (!name || !description) {
+        if (!title || !description) {
             setError("Both fields are required!");
             return;
         }
@@ -23,23 +24,25 @@ const CreateCommunity = () => {
             setError(null);
             setMessage(null);
 
-            const response = await axios.post(`http://localhost:8000/api/v1/community/createCommunity`, {name, description}, {
-
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
+            const response = await axios.post(
+                `http://localhost:8000/api/v1/user/createPost`,
+                { title, description },
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
                 }
-            });
-
+            );
 
             if (response.status !== 200) {
-                setError(response.data.data.message || "Something went wrong");
+                setError(response.data.message || "Something went wrong");
             } else {
-                setMessage("Community created successfully!");
-                setName("");
+                setMessage("Post created successfully!");
+                setTitle("");
                 setDescription("");
             }
         } catch (err) {
-            setError("Failed to create the community. Please try again.");
+            setError("Failed to create the post. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -48,7 +51,7 @@ const CreateCommunity = () => {
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100">
             <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold mb-6 text-center">Create a Community</h1>
+                <h1 className="text-2xl font-bold mb-6 text-center">Create a Post</h1>
 
                 {error && <p className="text-red-600 mb-4">{error}</p>}
                 {message && <p className="text-green-600 mb-4">{message}</p>}
@@ -56,23 +59,23 @@ const CreateCommunity = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
 
                     <div>
-                        <label htmlFor="name" className="block text-gray-700 font-medium">
-                            Community Name
+                        <label htmlFor="title" className="block text-gray-700 font-medium">
+                            Post Title
                         </label>
                         <input
                             type="text"
-                            id="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-                            placeholder="Enter community name"
+                            placeholder="Enter post title"
                         />
                     </div>
 
 
                     <div>
                         <label htmlFor="description" className="block text-gray-700 font-medium">
-                            Community Description
+                            Post Description
                         </label>
                         <textarea
                             id="description"
@@ -80,7 +83,7 @@ const CreateCommunity = () => {
                             onChange={(e) => setDescription(e.target.value)}
                             className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
                             rows="4"
-                            placeholder="Describe your community"
+                            placeholder="Describe your post"
                         ></textarea>
                     </div>
 
@@ -95,7 +98,7 @@ const CreateCommunity = () => {
                             }`}
                             disabled={loading}
                         >
-                            {loading ? "Creating..." : "Create Community"}
+                            {loading ? "Creating..." : "Create Post"}
                         </button>
                     </div>
                 </form>
@@ -104,4 +107,4 @@ const CreateCommunity = () => {
     );
 };
 
-export default CreateCommunity;
+export default CreatePost;

@@ -2,9 +2,6 @@ import mongoose from 'mongoose';
 import { User } from "./user.model.js";
 
 const communityPostSchema = new mongoose.Schema({
-    imageURL: {
-        type: String, // assuming we are using cloudinary 
-    }, 
     community: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Community',
@@ -41,10 +38,7 @@ const userPostSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'users'
-    }, 
-    imageURL: {
-        type: String, // assuming we are using cloudinary 
-    }, 
+    },
     title: {
         type: String, 
         min: 6, 

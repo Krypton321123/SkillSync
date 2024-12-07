@@ -116,7 +116,7 @@ const loginController = asyncHandler(async (req, res) => {
 
 
         return res.status(200).cookie('accessToken', accessToken, {httpOnly: true}).cookie('refreshToken', refreshToken, {httpOnly: true})
-        .json(new ApiResponse(200, {firstName: user.first_name, last_name: user.last_name, accessToken: accessToken}, "Login Successful"));
+        .json(new ApiResponse(200, {_id: user._id , firstName: user.first_name, last_name: user.last_name, accessToken: accessToken}, "Login Successful"));
 
     } catch(err) {
         console.log(err)
@@ -202,6 +202,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
 
+        const followers = await User.find({ "_id": { $in: user.followerList } }).select("first_name last_name email_id");
+        const following = await User.find({ "_id": { $in: user.followingList } }).select("first_name last_name email_id");
+
+        console.log(following)
         console.log(user)
 
         res.status(200).json({
@@ -210,8 +214,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
                 firstName: user.first_name,
                 lastName: user.last_name,
                 email: user.email_id,
-                followers: user.followerList.length,
-                following: user.followingList.length,
+                followers: followers,
+                following: following,
                 joinedCommunities: user.joinedCommunities || [],
             },
         });
@@ -221,6 +225,65 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
+const getUserDetails = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user._id
+    console.log(id)
+
+    try {
+        const user = await User.findById(id)
+            .select("first_name last_name followerList followingList joinedCommunities")
+            .populate("joinedCommunities", "name");
+
+        if (!user) {
+            return res.status(404).json(new ApiError(404, "User not found"));
+        }
+
+        res.status(200).json(new ApiResponse(200, {user, currentUserId: userId}, "User details fetched successfully"));
+    } catch (err) {
+        res.status(500).json(new ApiError(500, "Something went wrong"));
+    }
+});
+
+const toggleFollowUser = asyncHandler(async (req, res) => {
+    const { targetUserId } = req.body;
+
+    try {
+        const loggedInUser = req.user;
+
+        if (loggedInUser._id.toString() === targetUserId) {
+            return res.status(400).json(new ApiError(400, "You cannot follow yourself"));
+        }
+
+        const targetUser = await User.findById(targetUserId);
+
+        if (!targetUser) {
+            return res.status(404).json(new ApiError(404, "Target user not found"));
+        }
+
+        const isFollowing = loggedInUser.followingList.includes(targetUserId);
+
+        if (isFollowing) {
+            // Unfollow
+            loggedInUser.followingList.pull(targetUserId);
+            targetUser.followerList.pull(loggedInUser._id);
+        } else {
+            // Follow
+            loggedInUser.followingList.push(targetUserId);
+            targetUser.followerList.push(loggedInUser._id);
+        }
+
+        await loggedInUser.save();
+        await targetUser.save();
+
+        res.status(200).json(
+            new ApiResponse(200, { following: !isFollowing }, `User ${isFollowing ? "unfollowed" : "followed"} successfully`)
+        );
+    } catch (err) {
+        res.status(500).json(new ApiError(500, "Something went wrong"));
+    }
+});
 
 
-export { signUpController, loginController , logoutController, updateUserController , followUnfollowUserController, getUserProfile }
+
+export { signUpController, loginController , logoutController, updateUserController , followUnfollowUserController, getUserProfile, getUserDetails, toggleFollowUser }

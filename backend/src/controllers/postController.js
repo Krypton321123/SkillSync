@@ -1,5 +1,9 @@
-import { ApiError } from "../utils/ApiError";
-import { asyncHandler } from "../utils/asyncHandler";
+import { ApiError } from "../utils/ApiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import {ApiResponse} from "../utils/ApiResponse.js";
+import { isEmpty } from "../utils/isEmptyFields.js";
+import { userPost } from "../models/post.model.js";
+import {User} from "../models/user.model.js";
 
 const addPostController = asyncHandler(async(req , res)=>{
     const user = req.user;
@@ -129,4 +133,67 @@ const getFollowedPostsController = asyncHandler(async(req,res)=>{
     }    
 })
 
-export { addPostController, deletePostController, upVoteController, downVoteController, getSelfPostsController }
+const createUserPostController = asyncHandler(async (req, res) => {
+    const user = req.user;
+    console.log("user is this: ", user);
+
+    try {
+        const { title, description } = req.body;
+
+
+        if (isEmpty(title) || isEmpty(description)) {
+            return res.status(422).json(new ApiError(422, "Empty Title or Description"));
+        }
+
+        console.log(user._id);
+
+
+        const postCreating = new userPost({
+            user: user._id,
+            title: title,
+            description: description,
+        });
+
+        await postCreating.save();
+
+        const dataToSend = {
+            id: postCreating._id,
+            title: title,
+            description: description,
+            user: user._id,
+        };
+
+        return res.status(200).json(new ApiResponse(200, dataToSend, "Post Created Successfully"));
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json(new ApiError(500, "Internal Server Error"));
+    }
+});
+
+const getPostsController = asyncHandler(async (req, res) => {
+    const currentUser = req.user;
+
+    try {
+
+        const recentPosts = await userPost.find()
+            .sort({ timestamp: -1 })
+            .limit(3);
+
+
+        const followingUsers = await User.findById(currentUser._id).select('followingList');
+        const followingPosts = await userPost.find({ user: { $in: followingUsers.followingList } })
+            .sort({ timestamp: -1 })
+            .limit(5);
+
+        const allPosts = [...recentPosts, ...followingPosts];
+        console.log("in here")
+        res.status(200).json(new ApiResponse(200, allPosts, "success"));
+    } catch (err) {
+        console.error(err);
+        console.log('in here')
+        res.status(500).json(new ApiError(500, "Failed to fetch posts"));
+    }
+});
+
+
+export { addPostController, deletePostController, upVoteController, downVoteController, getSelfPostsController, createUserPostController, getPostsController }

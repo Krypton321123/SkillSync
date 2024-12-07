@@ -4,28 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7c36c5a-4450-41f7-87ee-b8e946d9c9a4" name="Changes" comment="Dashboard design completed">
-      <change afterPath="$PROJECT_DIR$/backend/src/controllers/searchController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routes/communityRouter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/CreateCommunity.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/DetailedCommunity.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/global/Sidebar.jsx" afterDir="false" />
+    <list default="true" id="b7c36c5a-4450-41f7-87ee-b8e946d9c9a4" name="Changes" comment="communities are now functional, now moving onto follow unfollow logic and user logic">
+      <change afterPath="$PROJECT_DIR$/backend/src/controllers/chatController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/controllers/roomController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/message.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routes/chatRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ModalComponents/CreateModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/ChatPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/CreatePost.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Pages/DetailedUser.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/services/socket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/store/atoms/chatAtoms.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/communityController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/communityController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/postController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/postController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/searchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/searchController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/isAuthenticated.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/isAuthenticated.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/community.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/community.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/models/post.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/post.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/roomRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/roomRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/userRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthenticationComponents/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AuthenticationComponents/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CommunityComponents/DetailedCommunity.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Room/RoomCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Room/RoomCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthenticationComponents/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AuthenticationComponents/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Pages/CreateCommunity.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Pages/CreateCommunity.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Pages/Dashboard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/global/AppBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/global/AppBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/global/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/global/Sidebar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +51,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -63,6 +73,9 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2nNHZy0OwZtpt05S884PC81gTe0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -107,7 +120,7 @@
       <workItem from="1732714281833" duration="11925000" />
       <workItem from="1733042904513" duration="2171000" />
       <workItem from="1733251396794" duration="3604000" />
-      <workItem from="1733427030858" duration="5581000" />
+      <workItem from="1733427030858" duration="20442000" />
     </task>
     <task id="LOCAL-00001" summary="Dashboard design completed">
       <option name="closed" value="true" />
@@ -117,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732716801041</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="communities are now functional, now moving onto follow unfollow logic and user logic">
+      <option name="closed" value="true" />
+      <created>1733472367039</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733472367039</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +168,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Dashboard design completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard design completed" />
+    <MESSAGE value="communities are now functional, now moving onto follow unfollow logic and user logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="communities are now functional, now moving onto follow unfollow logic and user logic" />
   </component>
 </project>

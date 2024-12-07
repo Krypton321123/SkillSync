@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { loginAtom } from '../../store/atoms/loginAtom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CreateModal from "../ModalComponents/CreateModal.jsx"; // Import the Modal component
 
 const AppBar = ({ children }) => {
     const navigate = useNavigate();
@@ -11,7 +12,10 @@ const AppBar = ({ children }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-    // Fetch communities from backend
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+
     useEffect(() => {
         if (searchQuery.trim()) {
             const fetchCommunities = async () => {
@@ -37,13 +41,35 @@ const AppBar = ({ children }) => {
         }
     }, [searchQuery]);
 
+
+    const handleCreateClick = () => {
+        setModalVisible(true);
+    };
+
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
+
+    const handleCreateCommunity = () => {
+        navigate('/createCommunity');
+        closeModal();
+    };
+
+
+    const handleCreatePost = () => {
+        navigate('/createPost');
+        closeModal();
+    };
+
     return (
         <>
             <div className="w-full h-16 border-y-2 flex justify-between items-center">
                 <div className="logo">
-                    <button className="text-xl whitespace-nowrap px-2" onClick={()=>{
-                        navigate('/');
-                    }}>SkillSync</button>
+                    <button className="text-xl whitespace-nowrap px-2" onClick={() => navigate('/')}>
+                        SkillSync
+                    </button>
                 </div>
                 <div className="relative search hidden md:flex lg:flex justify-start items-center">
                     <svg
@@ -71,54 +97,51 @@ const AppBar = ({ children }) => {
                     />
                     {isDropdownVisible && (
                         <div className="absolute top-12 left-0 w-72 bg-white shadow-lg rounded-lg z-10">
-                            {searchResults.length > 0 ? (
-                                searchResults.map((community) => (
-                                    <div
-                                        key={community._id}
-                                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                        onClick={() => {
-                                            navigate(`/detailedcommunity/${community._id}`)
-                                            setSearchQuery('')
-                                        } }
-                                    >
-                                        {community.name}
-                                    </div>
-                                ))
-                            ) : (
-                                <div className="px-4 py-2 text-gray-500">No results found</div>
-                            )}
+                            <h4 className="font-bold px-4">Communities</h4>
+                            {searchResults.communities.map((community) => (
+                                <div
+                                    key={community._id}
+                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                    onClick={() => navigate(`/detailedcommunity/${community._id}`)}
+                                >
+                                    {community.name}
+                                </div>
+                            ))}
+                            <h4 className="font-bold px-4 mt-2">Users</h4>
+                            {searchResults.users.map((user) => (
+                                <div
+                                    key={user._id}
+                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                    onClick={() => navigate(`/user/${user._id}`)}
+                                >
+                                    {user.first_name} {user.last_name}
+                                </div>
+                            ))}
                         </div>
                     )}
                 </div>
                 <div className="buttons">
-                    {loggedIn === true ? (
-                        <>
-                            <button>Create</button>
-                        </>
-                    ) : (
+
                         <>
                             <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    navigate('/signin');
-                                }}
-                                className="login font-semibold w-16 p-2 hover:bg-gray-300 rounded-3xl"
+                                onClick={handleCreateClick} // Open modal on "Create" click
+                                className="whitespace-nowrap font-semibold w-16 p-2 hover:bg-gray-300 rounded-3xl"
                             >
-                                Login
-                            </button>
-                            <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    navigate('/logout');
-                                }}
-                                className="signup font-semibold mr-2 w-20 p-2 hover:bg-gray-300 rounded-3xl"
-                            >
-                                Logout
+                                Create
                             </button>
                         </>
-                    )}
+
                 </div>
             </div>
+
+
+            <CreateModal
+                isVisible={isModalVisible}
+                closeModal={closeModal}
+                onCreateCommunity={handleCreateCommunity}
+                onCreatePost={handleCreatePost}
+            />
+
             {children}
         </>
     );
